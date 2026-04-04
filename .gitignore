@@ -1,0 +1,32 @@
+# Build output
+bin/
+obj/
+/packages/
+
+# .NET user-specific files
+*.user
+*.rsuser
+*.suo
+*.userprefs
+*.DotSettings.user
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# Logs and diagnostics
+*.log
+TestResults/
+
+# JetBrains Rider / IntelliJ
+.idea/
+riderModule.iml
+/_ReSharper.Caches/
+*.sln.iml
+
+# OS files
+.DS_Store
+
+# Local lesson configuration
+lesson7.config.json
