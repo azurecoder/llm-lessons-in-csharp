@@ -179,16 +179,9 @@ If no key is configured, lesson 7 will show a message like:
 No API key configured. Set OPENAI_API_KEY or update lesson7.config.json.
 ```
 
-The relevant fallback logic lives in:
-
-- [Lesson7/OpenAiGroundedResponder.cs](/Users/azurecoder/Downloads/Code/ukazure.llm/Lesson7/OpenAiGroundedResponder.cs)
-
 ## Notes
 
 - The lessons are intentionally tiny and simplified.
 - The goal is clarity, not scale or performance.
 - Later lessons reuse ideas from earlier ones, so they work best as a sequence.
 
-## Related files
-
-- [Program.cs](/Users/azurecoder/Downloads/Code/ukazure.llm/Program.cs)
