@@ -1,0 +1,86 @@
+Source: https://docs.azure.cn/en-us/guides/developer/azure-developer-guide
+Training note: this is a condensed Azure developer guide text for the ukazure.llm nanoGPT demo.
+
+Azure is a cloud platform for hosting existing applications and building new ones.
+Developers can use Azure to develop, test, deploy, monitor, and manage applications.
+Applications can start small and scale as customer demand grows.
+Azure services can support high availability, regional failover, cloud storage, authentication, monitoring, and DevOps.
+
+Choosing where to start means choosing how much platform management you want.
+Virtual Machines give developers infrastructure as a service and full control over the operating system and server configuration.
+App Service gives developers a managed platform for web apps, API apps, and mobile back ends.
+Azure Functions gives developers serverless execution for code triggered by HTTP requests, events, webhooks, or schedules.
+Service Fabric helps developers build, deploy, and manage scalable microservices.
+Azure Spring Apps supports Java Spring applications with managed service discovery, configuration, scaling, and monitoring.
+
+App Service is useful when a team wants a fast path to publish web projects.
+App Service supports authentication, autoscaling, production testing, continuous deployment, container deployment, and multiple languages.
+Developers can host websites, mobile services, and REST APIs from the same platform.
+DevOps workflows can publish App Service applications through tools such as GitHub, Jenkins, Azure DevOps, TeamCity, and other automation systems.
+
+Virtual Machines are useful when a team needs full control over the application infrastructure.
+With virtual machines, the team manages server software, configuration, maintenance, and operating system patches.
+This model works for workloads that do not fit neatly into a platform as a service model.
+Virtual machines can host Windows or Linux workloads and can be connected through Azure Virtual Network.
+
+Azure Functions is useful when a team wants to run small pieces of code without managing a complete hosted application.
+Function code can be written in languages such as C#, F#, Java, JavaScript, Python, and PowerShell.
+Consumption based hosting means the platform can scale execution and the team pays for the time the code runs.
+Functions are a good fit for event driven tasks, scheduled jobs, lightweight APIs, and automation glue.
+
+Most applications need data.
+Azure Cosmos DB supports globally distributed document, table, graph, and MongoDB compatible workloads.
+Azure Storage supports blobs, queues, files, tables, and other nonrelational storage patterns.
+Azure SQL Database supports relational data, transactions, referential integrity, performance, scalability, and data protection.
+Azure Data Factory can help move data from on premises systems into Azure.
+Hybrid Connections can connect an App Service application to on premises resources.
+
+Containers help developers package applications so they run consistently between development, testing, and production.
+Azure Kubernetes Service runs and manages clusters for production container workloads.
+Azure Container Apps runs microservices and containerized applications on a managed serverless platform.
+App Service for Linux can run custom container images for web applications.
+Container based deployment lets teams use familiar Docker tools and existing open source workflows.
+
+Authentication matters because applications need to know who users are and protect access to resources.
+Microsoft Entra ID provides cloud identity and access management.
+Developers can add single sign on, OAuth, OpenID Connect, and Microsoft Graph integration through Microsoft Entra ID.
+App Service Authentication can add built in authentication support to App Service applications.
+Security design should keep credentials out of source code and prefer managed identity where possible.
+
+Monitoring is part of running software in production rather than merely hoping very professionally.
+Application Insights monitors live web applications and helps teams understand performance and usage.
+Azure Monitor collects metrics and logs from infrastructure and application resources.
+Good monitoring helps developers find issues, understand customer behaviour, and improve reliability over time.
+
+Azure integrates with common DevOps tools.
+Teams can use GitHub, Jenkins, Puppet, Chef, TeamCity, Ansible, Azure DevOps, command line tools, and automation pipelines.
+Continuous integration and continuous deployment help teams move from local code to cloud-hosted applications repeatably.
+Infrastructure and application deployment should be boring, reviewable, and automated whenever possible.
+
+Azure regions are physical locations where applications and data run.
+Choosing a region can affect latency, compliance, availability, and disaster recovery.
+Teams often keep application data near the application hosting region.
+High availability applications may use more than one region so that failover is possible if a datacenter has a serious outage.
+Azure operated by 21Vianet has Azure regions in China, including China East, China East 2, China East 3, China North, China North 2, and China North 3.
+
+Developers can manage Azure resources through the Azure portal, command line interfaces, PowerShell, REST APIs, SDKs, and infrastructure as code.
+Azure CLI lets developers script tasks against Azure resources from a terminal.
+Azure PowerShell provides cmdlets for managing Azure resources from PowerShell.
+REST APIs and Azure SDKs let applications and automation tools manage resources programmatically.
+SDKs are available for platforms including .NET, JavaScript, Java, Python, PHP, Ruby, and Go.
+
+Azure Resource Manager treats related cloud services as a logical group.
+A web application might include App Service, SQL Database, Storage, Azure Cache for Redis, and a content delivery network.
+Resource Manager can deploy, update, or delete related resources in a coordinated operation.
+Bicep is an infrastructure as code language for defining Azure deployments.
+ARM templates are JSON documents for declarative deployment.
+Bicep and templates help teams make environments consistent across development, testing, staging, and production.
+
+Developers should also understand Azure accounts, subscriptions, directories, and billing.
+An Azure account is an identity that can work with Azure subscriptions.
+Subscriptions trust a Microsoft Entra directory for users, services, and devices.
+Understanding identity and billing is not glamorous, but it stops cloud projects from becoming expensive archaeology.
+
+For this nanoGPT demo, the training document gives the model Azure vocabulary and developer-shaped phrases.
+The generated text will still be character level and imperfect.
+The question loop uses this same document as grounded evidence so you can ask about App Service, Functions, storage, authentication, monitoring, regions, Azure CLI, SDKs, Resource Manager, and Bicep.

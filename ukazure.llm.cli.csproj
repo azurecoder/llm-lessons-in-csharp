@@ -10,10 +10,15 @@
     <ItemGroup>
         <PackageReference Include="OpenAI" Version="2.9.1" />
         <PackageReference Include="Spectre.Console" Version="0.51.1" />
+        <PackageReference Include="TorchSharp" Version="0.106.0" />
+        <PackageReference Include="TorchSharp-cpu" Version="0.106.0" />
     </ItemGroup>
 
     <ItemGroup>
       <None Update="lesson7.config.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="data/nanogpt-training.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>

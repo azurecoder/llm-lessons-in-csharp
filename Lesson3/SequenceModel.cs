@@ -26,6 +26,7 @@ internal sealed class SequenceModel
     public int VocabSize { get; }
 
     public int ContextSize => _contextSize;
+    
 
     public int EmbeddingSize => _embeddingSize;
 

@@ -1,12 +1,12 @@
 # ukazure.llm
 
-A small C# console project that teaches how a large language model is built, one lesson at a time.
+A small C# console project that teaches how a large language model is built, one step at a time.
 
 The repo is aimed at software developers rather than data scientists. Each lesson keeps the mechanics visible and uses tiny Azure and programming-flavoured examples so you can see what the code is doing without needing a GPU cluster or an existential crisis.
 
 ## What is in here
 
-The lessons currently cover:
+The interactive lessons currently cover:
 
 - `lesson1` - a count-based bigram model
 - `lesson2` - replacing counts with learnable weights
@@ -15,16 +15,19 @@ The lessons currently cover:
 - `lesson5` - a tiny transformer-style block
 - `lesson6` - training, inference, and sampling
 - `lesson7` - prompting, retrieval, and grounded answers
+- `nanogpt` - a TorchSharp-backed nanoGPT track using a training document
 
 ## Requirements
 
 - .NET 10 SDK
 - a terminal that supports interactive console input
+- macOS users running `nanogpt` may need `brew install libomp` for TorchSharp's CPU backend
 
 This project uses:
 
 - [`Spectre.Console`](https://spectreconsole.net/) for the interactive lesson UI
 - the official [`OpenAI`](https://www.nuget.org/packages/OpenAI) .NET SDK for the optional live model call in lesson 7
+- [`TorchSharp-cpu`](https://www.nuget.org/packages/TorchSharp-cpu) for the practical nanoGPT command
 
 ## How to run
 
@@ -34,7 +37,7 @@ From the repo root:
 dotnet run --project ukazure.llm.cli.csproj -- lesson1
 ```
 
-Replace `lesson1` with any lesson name from `lesson1` to `lesson7`.
+Replace `lesson1` with any lesson name from `lesson1` to `nanogpt`.
 
 If you run the app without a valid lesson argument, it prints the available lessons:
 
@@ -45,9 +48,9 @@ dotnet run --project ukazure.llm.cli.csproj
 Example output:
 
 ```text
-Usage: dotnet run lesson1|lesson2|lesson3|lesson4|lesson5|lesson6|lesson7
+Usage: dotnet run lesson1|lesson2|lesson3|lesson4|lesson5|lesson6|lesson7|nanogpt
 
-Available lessons:
+Available commands:
   lesson1  A tiny bigram model built from counts
   lesson2  Replace counts with learnable weights
   lesson3  Model sequencing with context windows
@@ -55,6 +58,7 @@ Available lessons:
   lesson5  A tiny transformer-style block
   lesson6  Training, inference, and sampling
   lesson7  Prompting, retrieval, and grounded answers
+  nanogpt  nanoGPT in C# with TorchSharp
 ```
 
 ## Example lesson flow
@@ -139,6 +143,41 @@ With retrieval:
 Store secrets in Azure Key Vault instead of appsettings files or source code. Use managed identities so the app can authenticate without storing passwords or client secrets. If the app runs on Azure App Service, configure app settings to reference Key Vault secrets.
 ```
 
+### nanoGPT
+
+The `nanogpt` command is separate from the numbered lessons. It reads a training document from `data/nanogpt-training.txt` and uses TorchSharp for tensors, automatic gradients, cross-entropy, and AdamW.
+
+Representative output:
+
+```text
+nanoGPT: C# with TorchSharp
+
+Path: data/nanogpt-training.txt
+
+Vocabulary size: 38
+Block size:     32
+Embedding size: 64
+Hidden size:    128
+
+Step   1: loss = 3.x
+Step  20: loss = 2.x
+Step  40: loss = 2.x
+Step  80: loss = 1.x
+
+Prompt: az
+Sample: az ...
+
+Ask questions about data/nanogpt-training.txt.
+Try: What stores secrets? or What does TorchSharp give C#?
+
+Question: What stores secrets?
+Answer: keyvault stores secrets so source code does not have to.
+Evidence:
+  keyvault stores secrets so source code does not have to. (score 2)
+```
+
+Submit a blank question to leave the question loop and finish the command. The generated sample still comes from the tiny TorchSharp character model; the question loop is deliberately grounded in the training document so the demo can answer useful questions without pretending that a small character model has suddenly become a semantic assistant.
+
 ## Lesson 7 configuration
 
 Lesson 7 can optionally call a live model through the OpenAI .NET SDK.
@@ -184,4 +223,3 @@ No API key configured. Set OPENAI_API_KEY or update lesson7.config.json.
 - The lessons are intentionally tiny and simplified.
 - The goal is clarity, not scale or performance.
 - Later lessons reuse ideas from earlier ones, so they work best as a sequence.
-
