@@ -145,7 +145,15 @@ Store secrets in Azure Key Vault instead of appsettings files or source code. Us
 
 ### nanoGPT
 
-The `nanogpt` command is separate from the numbered lessons. It reads a training document from `data/nanogpt-training.txt` and uses TorchSharp for tensors, automatic gradients, cross-entropy, and AdamW.
+The `nanogpt` command is separate from the numbered lessons. It is a C# rewrite track inspired by Andrej Karpathy's nanoGPT repo, using TorchSharp rather than hand-written arrays for the practical training machinery.
+
+It reads a condensed training document from [`data/nanogpt-training.txt`](data/nanogpt-training.txt). The document is based on the Azure developer guide:
+
+```text
+https://docs.azure.cn/en-us/guides/developer/azure-developer-guide
+```
+
+TorchSharp provides tensors, automatic gradients, cross-entropy, and AdamW. The current implementation is intentionally small: it is a character-level model trained on Azure developer text, plus an interactive document-grounded question loop.
 
 Representative output:
 
@@ -154,29 +162,44 @@ nanoGPT: C# with TorchSharp
 
 Path: data/nanogpt-training.txt
 
-Vocabulary size: 38
+Vocabulary size: 60
 Block size:     32
 Embedding size: 64
 Hidden size:    128
 
-Step   1: loss = 3.x
-Step  20: loss = 2.x
-Step  40: loss = 2.x
-Step  80: loss = 1.x
+Step   1: loss = 4.1052
+Step  20: loss = 3.1908
+Step  40: loss = 3.0859
+Step  60: loss = 2.8595
+Step  80: loss = 2.5768
 
 Prompt: az
 Sample: az ...
 
 Ask questions about data/nanogpt-training.txt.
-Try: What stores secrets? or What does TorchSharp give C#?
+Try: What is App Service useful for? or Why would I use Bicep or ARM templates?
 
-Question: What stores secrets?
-Answer: keyvault stores secrets so source code does not have to.
+Question: What is App Service useful for?
+Answer: App Service is useful when a team wants a fast path to publish web projects. App Service for Linux can run custom container images for web applications. Hybrid Connections can connect an App Service application to on premises resources.
 Evidence:
-  keyvault stores secrets so source code does not have to. (score 2)
+  App Service is useful when a team wants a fast path to publish web projects. (score 3)
+  App Service for Linux can run custom container images for web applications. (score 2)
+  Hybrid Connections can connect an App Service application to on premises resources. (score 2)
 ```
 
 Submit a blank question to leave the question loop and finish the command. The generated sample still comes from the tiny TorchSharp character model; the question loop is deliberately grounded in the training document so the demo can answer useful questions without pretending that a small character model has suddenly become a semantic assistant.
+
+Useful demo questions:
+
+- What is App Service useful for?
+- When should I use Azure Functions?
+- How can developers manage Azure resources?
+- What does Azure Monitor help with?
+- Why would I use Bicep or ARM templates?
+
+The evidence score is a simple lexical overlap score from the local document retriever. It is intentionally visible and imperfect, which makes it useful for explaining why production retrieval systems often add embeddings, chunking, reranking, and a final LLM answer-generation step.
+
+For a deeper technical walkthrough of the current implementation, see [`docs/nanogpt-technical-walkthrough.md`](docs/nanogpt-technical-walkthrough.md).
 
 ## Lesson 7 configuration
 

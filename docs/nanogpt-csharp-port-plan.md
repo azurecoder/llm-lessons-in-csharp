@@ -233,24 +233,19 @@ Why character-level first:
 - easy to inspect
 - works on CPU
 
-Add a simple data file later:
+The repo now uses a condensed Azure developer guide training file:
 
 ```text
-data/azure-cli-mini.txt
+data/nanogpt-training.txt
 ```
 
-Example content:
+The source text is based on:
 
 ```text
-az deployment group create with bicep
-az deployment group create with json
-az webapp deploy with package
-az webapp deploy with zip
-dotnet build src api project
-github actions deploy to appservice
+https://docs.azure.cn/en-us/guides/developer/azure-developer-guide
 ```
 
-Then `CharacterTokenizer` can build:
+`CharacterTokenizer` builds:
 
 ```csharp
 Dictionary<char, int> CharToId
@@ -308,7 +303,7 @@ Recommendation update: the repo now uses the TorchSharp route for the separate `
 ## Concrete Implementation Steps
 
 1. Add `nanogpt` to the CLI.
-2. Add a character tokenizer and tiny Azure CLI corpus.
+2. Add a character tokenizer and Azure developer guide training document.
 3. Add `NanoGptConfig`.
 4. Refactor lesson 5 ideas into reusable block types.
 5. Implement causal self-attention across all positions.
